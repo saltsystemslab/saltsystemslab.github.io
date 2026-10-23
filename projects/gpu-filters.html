@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPU Filters · SALT Systems Lab</title>
+  <meta name="description" content="GPU Filters: High-performance filters for GPUs. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-gpu">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#gpu">GPU Data Management</a></p>
+    <h1>GPU Filters</h1>
+    <p class="lede">High-performance filters for GPUs</p>
+    <div class="meta"><span class="chip">CUDA</span><span class="chip">PPoPP 2023</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>Filters store a set approximately, giving up a little accuracy for a lot of space efficiency. That trade-off matters on accelerators like GPUs, where memory is limited. Most filter research has focused on CPUs, though, so there were few fast, full-featured GPU filters.</p><p>This project explores the design space of GPU filters and introduces two new ones. The Two-Choice Filter (TCF) provides fast set membership. The GPU Quotient Filter (GQF) adds counting at some performance cost. Both have point and bulk APIs, and they are up to 4.4× and 1.4× faster than earlier GPU filters.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Two-Choice Filter (TCF)</h3><p>Template components for point key-value structures, with configurable layout, access pattern, and false-positive rate.</p></div><div class="feature"><h3>Bulk TCF</h3><p>A TCF optimized for bulk data that groups keys with Thrust.</p></div><div class="feature"><h3>GPU Quotient Filter (GQF)</h3><p>Inserts, queries, deletes, counting, and key-value association, with a reduction scheme for Zipfian workloads.</p></div><div class="feature"><h3>Easy integration</h3><p>Add the library with CPM in one CMake snippet.</p></div></div><h2>Add to CMake</h2><pre><code class="lang-cmake">include(cmake/CPM.cmake)
+
+CPMAddPackage(
+  NAME gpu-filters
+  GITHUB_REPOSITORY saltsystemslab/gpu-filters
+  GIT_TAG origin/main
+)</code></pre><h2>Citation</h2><pre><code>@inproceedings{mccoy2023gpufilters,
+  author    = {McCoy, Hunter and Hofmeyr, Steven and Yelick, Katherine and Pandey, Prashant},
+  title     = {High-Performance Filters for GPUs},
+  booktitle = {Proceedings of the 28th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (PPoPP)},
+  year      = {2023},
+  doi       = {10.1145/3572848.3577507}
+}</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/gpu-filters">Source code →</a></li><li><a href="https://doi.org/10.1145/3572848.3577507">Paper (PPoPP 2023) →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in GPU Data Management</h3>
+        <ul class="related"><li><a href="warpspeed.html">warpSpeed</a><span>Concurrent GPU hash tables</span></li><li><a href="gallatin.html">Gallatin</a><span>General-purpose GPU memory manager</span></li><li><strong>Andes</strong><span>Coming soon</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SALT Systems Lab</title>
+  <meta name="description" content="SALT Systems Lab — Scalable Algorithms and Systems Lab at Northeastern University. Open-source GPU data structures, vector search, and space-efficient filters.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="mark" src="assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="./" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="eyebrow">Scalable Algorithms &amp; Systems · Northeastern University</p>
+    <h1>Fast, memory-efficient data systems for modern hardware.</h1>
+    <p class="lede">
+      We design data structures and systems that scale with today's hardware: filters and hash
+      tables with provable guarantees, GPU memory allocators and data structures, and
+      GPU-native vector search and serving for AI workloads. All of our projects are open source.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="projects.html">Explore projects</a>
+      <a class="btn" href="https://github.com/saltsystemslab">github.com/saltsystemslab</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Research areas</h2>
+      <p class="sub">Our projects fall into four areas that share the same goal: high throughput with very little memory.</p>
+
+      <div class="areas">
+        <a class="area tone-filter" href="projects.html#filters">
+          <h3>Filters</h3>
+          <p>Compact approximate-membership data structures: counting, vectorized, adaptive, and range filters with provable guarantees.</p>
+          <div class="names"><span class="chip">CQF</span><span class="chip">VQF</span><span class="chip">Breadcrumb Filter</span><span class="chip">AdaptiveQF</span><span class="chip">SkiQF</span><span class="chip">Aeris Filter</span></div>
+        </a>
+        <a class="area tone-hash" href="projects.html#hashtables">
+          <h3>Hash Tables</h3>
+          <p>Fast, concurrent hash tables that stay stable and efficient at high load factors.</p>
+          <div class="names"><span class="chip">IcebergHT</span><span class="chip">Zombie Hashing</span></div>
+        </a>
+        <a class="area tone-gpu" href="projects.html#gpu">
+          <h3>GPU Data Management</h3>
+          <p>Building blocks for GPU applications: memory management, hash tables, and filters designed for thousands of concurrent threads.</p>
+          <div class="names"><span class="chip">GPU Filters</span><span class="chip">warpSpeed</span><span class="chip">Gallatin</span><span class="chip">Andes</span></div>
+        </a>
+        <a class="area tone-ai" href="projects.html#ai">
+          <h3>AI Systems</h3>
+          <p>GPU-native infrastructure for vector search, retrieval, and LLM serving.</p>
+          <div class="names"><span class="chip">Jasper</span><span class="chip">InferScale</span><span class="chip">Cascade</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="people">
+    <div class="wrap">
+      <h2>People</h2>
+      <p class="sub">
+        SALT Systems Lab is part of the Khoury College of Computer Sciences at Northeastern University.
+        Interested in working with us? Get in touch through the lab director's page.
+      </p>
+
+      <ul class="people">
+        <li><a href="https://prashantpandey.github.io/">Prashant Pandey</a> <span class="role">Lab Director</span></li>
+        <li><a href="https://sites.google.com/view/jamshed/home">Jamshed Khan</a> <span class="role">Khoury Distinguished Postdoc · since Fall 2025</span></li>
+        <li><a href="https://droidkid.github.io/">Yuvraj Chesetti</a> <span class="role">Ph.D. student · since Fall 2023</span></li>
+        <li><a href="https://www.zikunw.com/">Zikun Wang</a> <span class="role">Ph.D. student · since Fall 2025</span></li>
+        <li><a href="https://www.linkedin.com/in/quynhdp/">Quynh Pham</a> <span class="role">Ph.D. student · starting Fall 2026</span></li>
+        <li><a href="https://peter.bio/about">Peter Li</a> <span class="role">M.S. student · since Summer 2026</span></li>
+      </ul>
+
+      <h3 class="people-sub">Alumni</h3>
+      <ul class="people">
+        <li><a href="https://huntermberkeley.github.io/">Hunter McCoy</a> <span class="role">Ph.D. 2022–2026 · now at Amazon Redshift</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

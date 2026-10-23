@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IcebergHT · SALT Systems Lab</title>
+  <meta name="description" content="IcebergHT: High-performance hash tables through stability and low associativity. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-hash">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#hashtables">Hash Tables</a></p>
+    <h1>IcebergHT</h1>
+    <p class="lede">High-performance hash tables through stability and low associativity</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">PMEM</span><span class="chip">SIGMOD 2023</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>IcebergHT is a fast, concurrent, and resizable hash table for 64-bit keys and values. It supports insertions, deletions, and queries.</p><p>Iceberg hashing is the first hash-table design to be both stable (items stay where they are first placed) and low-associativity (each item can live in only a few places). That combination keeps operations cache- and I/O-efficient, both in DRAM and on persistent memory.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Stable and low associativity</h3><p>The first hash-table design with both properties.</p></div><div class="feature"><h3>Concurrent and resizable</h3><p>Scales across threads and grows in place.</p></div><div class="feature"><h3>Persistent memory</h3><p>Optional PMEM build.</p></div><div class="feature"><h3>Vectorized</h3><p>Uses vector instructions to speed up operations.</p></div></div><h2>API and build</h2><pre><code class="lang-c">iceberg_insert(key, value);     // insert a key-value pair
+iceberg_get_value(key);         // look up a value
+iceberg_remove(key);            // remove a key
+
+$ make main &amp;&amp; ./main -s 24 -t 4                        # 2^24 slots, 4 threads
+$ PMEM=1 make main &amp;&amp; ./main -p /path/to/pmem -s 24 -t 4</code></pre><h2>Citation</h2><pre><code>@article{pandey2023iceberght,
+  author  = {Prashant Pandey and Michael A. Bender and Alex Conway and Mart{\&#x27;\i}n Farach-Colton
+             and William Kuszmaul and Guido Tagliavini and Rob Johnson},
+  title   = {IcebergHT: High Performance Hash Tables Through Stability and Low Associativity},
+  journal = {Proceedings of the ACM on Management of Data},
+  volume  = {1},
+  number  = {1},
+  year    = {2023},
+  doi     = {10.1145/3588727}
+}</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/iceberghashtable">Source code →</a></li><li><a href="https://doi.org/10.1145/3588727">Paper (ACM DL) →</a></li><li><a href="https://arxiv.org/abs/2210.04068">Paper (arXiv) →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Hash Tables</h3>
+        <ul class="related"><li><a href="zombie-hashing.html">Zombie Hashing</a><span>Linear probing with consistent performance at high load</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

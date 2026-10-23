@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vector Quotient Filter · SALT Systems Lab</title>
+  <meta name="description" content="Vector Quotient Filter: Overcoming the time/space trade-off in filter design. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-filter">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#filters">Filters</a></p>
+    <h1>Vector Quotient Filter</h1>
+    <p class="lede">Overcoming the time/space trade-off in filter design</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">AVX-512</span><span class="chip">SIGMOD 2021</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>The Vector Quotient Filter (VQF) supports approximate membership testing. Like the quotient filter, it is based on Robin Hood hashing. Unlike the quotient filter, it uses power-of-two-choices hashing to reduce the variance of runs.</p><p>As a result, the VQF delivers consistent, high throughput across load factors, and power-of-two-choices hashing also makes it more amenable to concurrent updates. It uses AVX-512 instructions, with an AVX2 fallback.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Consistent throughput</h3><p>Power-of-two-choices hashing keeps performance steady across load factors.</p></div><div class="feature"><h3>SIMD</h3><p>AVX-512 operations, with an AVX2 implementation as a fallback.</p></div><div class="feature"><h3>Concurrent inserts</h3><p>A thread-safe build is available.</p></div><div class="feature"><h3>Simple API</h3><p>vqf_insert, vqf_is_present, and vqf_remove.</p></div></div><h2>API and build</h2><pre><code class="lang-c">vqf_insert(item);        // insert an item
+vqf_is_present(item);    // membership (may return false positives)
+vqf_remove(item);        // remove an item
+
+$ make main &amp;&amp; ./main 24
+$ make THREAD=1 main_tx &amp;&amp; ./main_tx 24 4    # thread-safe inserts</code></pre><h2>Citation</h2><pre><code>@inproceedings{PandeyCDB21,
+  author    = {Prashant Pandey and Alex Conway and Joe Durie and Michael A. Bender
+               and Martin Farach-Colton and Rob Johnson},
+  title     = {Vector Quotient Filters: Overcoming the Time/Space Trade-Off in Filter Design},
+  booktitle = {Proceedings of the 2021 ACM International Conference on Management of Data (SIGMOD)},
+  year      = {2021}
+}</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/vqf">Source code →</a></li><li><a href="https://doi.org/10.1145/3448016.3452841">Paper (SIGMOD 2021) →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Filters</h3>
+        <ul class="related"><li><a href="cqf.html">Counting Quotient Filter</a><span>A general-purpose counting filter</span></li><li><a href="breadcrumb.html">Breadcrumb Filter</a><span>SIMD-accelerated filter</span></li><li><a href="https://saltsystemslab.github.io/adaptiveqf/">Adaptive Quotient Filter</a><span>A quotient filter that adapts to false positives</span></li><li><a href="skiqf.html">SkiQF</a><span>Online adaptive quotient filters</span></li><li><a href="aeris.html">Aeris Filter</a><span>Adaptive, expandable range filter</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

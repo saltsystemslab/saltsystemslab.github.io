@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aeris Filter · SALT Systems Lab</title>
+  <meta name="description" content="Aeris Filter: Adaptive, expandable range filter. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-filter">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#filters">Filters</a></p>
+    <h1>Aeris Filter</h1>
+    <p class="lede">Adaptive, expandable range filter</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">C++</span><span class="chip">SplinterDB</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>Aeris (Adaptive Expandable Range filter) is a range filter that resolves false positives as it encounters them. It is the first range filter to guarantee a bounded false-positive rate for any query distribution, including skewed and adversarial ones, where existing range filters&#x27; false-positive rates are unbounded.</p><p>Aeris builds on the Memento filter, a fingerprint-based dynamic range filter, and inherits its dynamic updates, constant-time operations, and false-positive guarantees. It also expands efficiently and is monotonically adaptive, so it never forgets a false positive.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Bounded FPR</h3><p>Guaranteed for any query distribution, including adversarial workloads.</p></div><div class="feature"><h3>Monotonic adaptivity</h3><p>Once a false positive is fixed, it stays fixed.</p></div><div class="feature"><h3>Expandable</h3><p>Grows efficiently as the dataset grows.</p></div><div class="feature"><h3>Point and range queries</h3><p>Constant-time operations, inherited from the Memento filter.</p></div></div><h2>API</h2><pre><code class="lang-cpp">ARQF* arqf = (ARQF*)malloc(sizeof(ARQF));
+arqf_init_with_rhm(arqf, db, n_slots, key_size, memento_bits, seed);
+
+qf_insert_memento(arqf-&gt;qf, value, 0, &amp;fingerprint);       // insert
+
+result = qf_point_query(arqf-&gt;qf, left, QF_NO_LOCK);       // query
+result = qf_range_query(arqf-&gt;qf, left, right, QF_NO_LOCK);
+
+arqf_adapt_range(arqf, left, right, 0);                     // fix a false positive</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/AerisFilter">Source code →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Filters</h3>
+        <ul class="related"><li><a href="cqf.html">Counting Quotient Filter</a><span>A general-purpose counting filter</span></li><li><a href="vqf.html">Vector Quotient Filter</a><span>Overcoming the time/space trade-off in filter design</span></li><li><a href="breadcrumb.html">Breadcrumb Filter</a><span>SIMD-accelerated filter</span></li><li><a href="https://saltsystemslab.github.io/adaptiveqf/">Adaptive Quotient Filter</a><span>A quotient filter that adapts to false positives</span></li><li><a href="skiqf.html">SkiQF</a><span>Online adaptive quotient filters</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

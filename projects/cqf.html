@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Counting Quotient Filter · SALT Systems Lab</title>
+  <meta name="description" content="Counting Quotient Filter: A general-purpose counting filter. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-filter">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#filters">Filters</a></p>
+    <h1>Counting Quotient Filter</h1>
+    <p class="lede">A general-purpose counting filter</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">SIGMOD 2017</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>The Counting Quotient Filter (CQF) supports approximate membership testing and counts how often each item occurs in a dataset. Like a Bloom filter it can return false positives, but it is a general-purpose approximate membership query (AMQ) structure designed so that every bit counts.</p><p>The CQF is small and fast, has good locality of reference, and scales out of RAM to SSD. It supports deletions, counting (even on skewed datasets), resizing, merging, and highly concurrent access.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Counting</h3><p>Space-efficient counts that adapt to skewed datasets.</p></div><div class="feature"><h3>Full feature set</h3><p>Insertions, deletions, resizing, and merging.</p></div><div class="feature"><h3>Cache-friendly</h3><p>Good locality of reference, and it scales out of RAM to SSD.</p></div><div class="feature"><h3>Concurrent</h3><p>Supports highly concurrent access.</p></div></div><h2>API and build</h2><pre><code class="lang-c">qf_insert(item, count);          // insert an item
+qf_count_key_value(item);        // count (may over-count, like a Bloom filter)
+qf_remove(item, count);          // decrement; count = 0 removes the item
+
+$ make test &amp;&amp; ./test 24 8       # Haswell or newer
+$ make NH=1 test                 # older CPUs</code></pre><h2>Citation</h2><pre><code>@inproceedings{PandeyBJP17,
+  author    = {Prashant Pandey and Michael A. Bender and Rob Johnson and Rob Patro},
+  title     = {A General-Purpose Counting Filter: Making Every Bit Count},
+  booktitle = {Proceedings of the 2017 ACM International Conference on Management of Data (SIGMOD)},
+  pages     = {775--787},
+  year      = {2017},
+  doi       = {10.1145/3035918.3035963}
+}</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/cqf">Source code →</a></li><li><a href="https://doi.org/10.1145/3035918.3035963">Paper (SIGMOD 2017) →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Filters</h3>
+        <ul class="related"><li><a href="vqf.html">Vector Quotient Filter</a><span>Overcoming the time/space trade-off in filter design</span></li><li><a href="breadcrumb.html">Breadcrumb Filter</a><span>SIMD-accelerated filter</span></li><li><a href="https://saltsystemslab.github.io/adaptiveqf/">Adaptive Quotient Filter</a><span>A quotient filter that adapts to false positives</span></li><li><a href="skiqf.html">SkiQF</a><span>Online adaptive quotient filters</span></li><li><a href="aeris.html">Aeris Filter</a><span>Adaptive, expandable range filter</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zombie Hashing · SALT Systems Lab</title>
+  <meta name="description" content="Zombie Hashing: Linear probing with consistent performance at high load. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-hash">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#hashtables">Hash Tables</a></p>
+    <h1>Zombie Hashing</h1>
+    <p class="lede">Linear probing with consistent performance at high load</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">C++</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>Zombie Hashing is a linear probing scheme that keeps performance consistent and data locality high, even at high load factors. Linear probing tables use tombstones (deletion markers) to speed up operations and reduce primary clustering. Those tombstones must be redistributed periodically, which halts all operations and makes performance uneven.</p><p>Zombie Hashing redistributes tombstones within small windows instead, so the table never needs to stop. It comes in two variants: an ordered compact table and an unordered vectorized table based on Abseil.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>No global rebuilds</h3><p>Tombstones are redistributed locally, so operations never stop.</p></div><div class="feature"><h3>Two variants</h3><p>An ordered compact linear probing table and an unordered vectorized table built on Abseil.</p></div><div class="feature"><h3>High load factors</h3><p>Evaluated at 75%, 85%, and 95% load under churn.</p></div><div class="feature"><h3>Churn benchmarks</h3><p>Measures both throughput and latency against RobinHood, Graveyard, Iceberg, CLHT, and Abseil.</p></div></div><h2>Quick start</h2><pre><code class="lang-bash">git clone https://github.com/saltsystemslab/ZombieHT &amp;&amp; cd ZombieHT
+./setup.sh
+./run_throughput.sh   # churn throughput experiments
+./run_latency.sh      # churn latency experiments
+./plot_data.sh        # report at ./bench/report/main.pdf</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/ZombieHT">Source code →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Hash Tables</h3>
+        <ul class="related"><li><a href="iceberg.html">IcebergHT</a><span>High-performance hash tables through stability and low associativity</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

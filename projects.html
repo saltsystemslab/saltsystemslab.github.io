@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · SALT Systems Lab</title>
+  <meta name="description" content="Open-source projects from SALT Systems Lab: filters, hash tables, GPU data management, and AI systems.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="mark" src="assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="./">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero" style="padding-bottom: 40px">
+    <p class="eyebrow">Projects</p>
+    <h1>Open-source systems from SALT.</h1>
+    <p class="lede">15 projects in 4 areas, released with code, benchmarks, and the papers behind them.</p>
+    <div class="toc">
+      <a class="tone-filter" href="#filters">Filters</a>
+      <a class="tone-hash" href="#hashtables">Hash Tables</a>
+      <a class="tone-gpu" href="#gpu">GPU Data Management</a>
+      <a class="tone-ai" href="#ai">AI Systems</a>
+    </div>
+  </div>
+
+  <section id="filters" class="tone-filter">
+    <div class="wrap">
+      <div class="group-head"><span class="dot"></span><h2>Filters</h2></div>
+      <p class="sub">Compact approximate-membership data structures: counting, vectorized, adaptive, and range filters with provable guarantees.</p>
+      <div class="projects">
+        <article class="project" id="cqf">
+          <h3><a href="projects/cqf.html">Counting Quotient Filter</a></h3>
+          <p class="tagline">A general-purpose counting filter</p>
+          <p>A general-purpose counting filter that is small, fast, and cache-friendly. It supports counting, deletions, resizing, merging, and concurrent access, and scales out of RAM to SSD.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">SIGMOD 2017</span></div>
+          <div class="links"><a href="projects/cqf.html">Details</a> <a href="https://github.com/saltsystemslab/cqf">Code</a> <a href="https://doi.org/10.1145/3035918.3035963">Paper</a></div>
+        </article>
+        <article class="project" id="vqf">
+          <h3><a href="projects/vqf.html">Vector Quotient Filter</a></h3>
+          <p class="tagline">Overcoming the time/space trade-off in filter design</p>
+          <p>Uses power-of-two-choices hashing and SIMD to deliver consistently high throughput across load factors, overcoming the classic time/space trade-off.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">AVX-512</span><span class="chip">SIGMOD 2021</span></div>
+          <div class="links"><a href="projects/vqf.html">Details</a> <a href="https://github.com/saltsystemslab/vqf">Code</a> <a href="https://doi.org/10.1145/3448016.3452841">Paper</a></div>
+        </article>
+        <article class="project" id="breadcrumb">
+          <h3><a href="projects/breadcrumb.html">Breadcrumb Filter</a></h3>
+          <p class="tagline">SIMD-accelerated filter</p>
+          <p>An AVX-512 filter benchmarked against the VQF, CQF, and prefix filter, and integrated into WiredTiger to screen negative queries.</p>
+          <div class="meta"><span class="chip">C++</span><span class="chip">AVX-512</span></div>
+          <div class="links"><a href="projects/breadcrumb.html">Details</a> <a href="https://github.com/saltsystemslab/BreadcrumbFilter">Code</a></div>
+        </article>
+        <article class="project" id="adaptiveqf">
+          <h3><a href="https://saltsystemslab.github.io/adaptiveqf/">Adaptive Quotient Filter</a></h3>
+          <p class="tagline">A quotient filter that adapts to false positives</p>
+          <p>A quotient filter that adapts to false positives by extending fingerprints, so the same false positive never repeats, while keeping cache efficiency and mergeability.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">C++</span><span class="chip">SIGMOD 2025</span></div>
+          <div class="links"><a href="https://saltsystemslab.github.io/adaptiveqf/">Project site ↗</a> <a href="https://github.com/saltsystemslab/adaptiveqf">Code</a> <a href="https://arxiv.org/abs/2405.10253">Paper</a></div>
+        </article>
+        <article class="project" id="skiqf">
+          <h3><a href="projects/skiqf.html">SkiQF</a></h3>
+          <p class="tagline">Online adaptive quotient filters</p>
+          <p>Uses ski-rental analysis to decide when adapting to a false positive is worth the disk I/O, which makes it 2-competitive on total I/O.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">C++</span><span class="chip">SplinterDB</span><span class="chip">WiredTiger</span></div>
+          <div class="links"><a href="projects/skiqf.html">Details</a> <a href="https://github.com/saltsystemslab/SkiRentalAdaptiveQF">Code</a></div>
+        </article>
+        <article class="project" id="aeris">
+          <h3><a href="projects/aeris.html">Aeris Filter</a></h3>
+          <p class="tagline">Adaptive, expandable range filter</p>
+          <p>The first range filter that guarantees a bounded false-positive rate for any query distribution, including adversarial ones. It never forgets a false positive.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">C++</span><span class="chip">SplinterDB</span></div>
+          <div class="links"><a href="projects/aeris.html">Details</a> <a href="https://github.com/saltsystemslab/AerisFilter">Code</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="hashtables" class="tone-hash">
+    <div class="wrap">
+      <div class="group-head"><span class="dot"></span><h2>Hash Tables</h2></div>
+      <p class="sub">Fast, concurrent hash tables that stay stable and efficient at high load factors.</p>
+      <div class="projects">
+        <article class="project" id="iceberg">
+          <h3><a href="projects/iceberg.html">IcebergHT</a></h3>
+          <p class="tagline">High-performance hash tables through stability and low associativity</p>
+          <p>A fast, concurrent, resizable hash table that achieves both stability and low associativity. It runs on DRAM and persistent memory.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">PMEM</span><span class="chip">SIGMOD 2023</span></div>
+          <div class="links"><a href="projects/iceberg.html">Details</a> <a href="https://github.com/saltsystemslab/iceberghashtable">Code</a> <a href="https://doi.org/10.1145/3588727">Paper</a></div>
+        </article>
+        <article class="project" id="zombie-hashing">
+          <h3><a href="projects/zombie-hashing.html">Zombie Hashing</a></h3>
+          <p class="tagline">Linear probing with consistent performance at high load</p>
+          <p>Redistributes tombstones within small windows instead of halting for global rebuilds, so linear probing stays fast even at 95% load.</p>
+          <div class="meta"><span class="chip">C</span><span class="chip">C++</span></div>
+          <div class="links"><a href="projects/zombie-hashing.html">Details</a> <a href="https://github.com/saltsystemslab/ZombieHT">Code</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="gpu" class="tone-gpu">
+    <div class="wrap">
+      <div class="group-head"><span class="dot"></span><h2>GPU Data Management</h2></div>
+      <p class="sub">Building blocks for GPU applications: memory management, hash tables, and filters designed for thousands of concurrent threads.</p>
+      <div class="projects">
+        <article class="project" id="gpu-filters">
+          <h3><a href="projects/gpu-filters.html">GPU Filters</a></h3>
+          <p class="tagline">High-performance filters for GPUs</p>
+          <p>The Two-Choice Filter and the GPU Quotient Filter: fast set membership and counting on the GPU, up to 4.4× faster than earlier GPU filters.</p>
+          <div class="meta"><span class="chip">CUDA</span><span class="chip">PPoPP 2023</span></div>
+          <div class="links"><a href="projects/gpu-filters.html">Details</a> <a href="https://github.com/saltsystemslab/gpu-filters">Code</a> <a href="https://doi.org/10.1145/3572848.3577507">Paper</a></div>
+        </article>
+        <article class="project" id="warpspeed">
+          <h3><a href="projects/warpspeed.html">warpSpeed</a></h3>
+          <p class="tagline">Concurrent GPU hash tables</p>
+          <p>A library of thread-safe GPU hash tables and the building blocks for new ones, covering chaining, cuckoo, double, iceberg, and power-of-two-choice hashing.</p>
+          <div class="meta"><span class="chip">CUDA</span></div>
+          <div class="links"><a href="projects/warpspeed.html">Details</a> <a href="https://github.com/saltsystemslab/warpSpeed">Code</a></div>
+        </article>
+        <article class="project" id="gallatin">
+          <h3><a href="projects/gallatin.html">Gallatin</a></h3>
+          <p class="tagline">General-purpose GPU memory manager</p>
+          <p>Lets GPU threads malloc and free allocations of any size inside kernels, with no host calls. Built on van Emde Boas trees to keep fragmentation low.</p>
+          <div class="meta"><span class="chip">CUDA</span><span class="chip">Header-only</span><span class="chip">PPoPP 2024</span></div>
+          <div class="links"><a href="projects/gallatin.html">Details</a> <a href="https://github.com/saltsystemslab/gallatin">Code</a></div>
+        </article>
+        <article class="project" id="andes">
+          <h3>Andes <span class="soon">Coming soon</span></h3>
+          
+          
+          <div class="meta"></div>
+          
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="ai" class="tone-ai">
+    <div class="wrap">
+      <div class="group-head"><span class="dot"></span><h2>AI Systems</h2></div>
+      <p class="sub">GPU-native infrastructure for vector search, retrieval, and LLM serving.</p>
+      <div class="projects">
+        <article class="project" id="jasper">
+          <h3><a href="https://saltsystemslab.github.io/Jasper/">Jasper</a></h3>
+          <p class="tagline">GPU-native approximate nearest neighbor search</p>
+          <p>A Vamana-graph ANNS index with RaBitQ quantization that runs index construction and queries entirely on the GPU, and scales to billion-vector datasets.</p>
+          <div class="meta"><span class="chip">CUDA</span><span class="chip">Python</span><span class="chip">VLDB 2026</span></div>
+          <div class="links"><a href="https://saltsystemslab.github.io/Jasper/">Project site ↗</a> <a href="https://github.com/saltsystemslab/Jasper">Code</a></div>
+        </article>
+        <article class="project" id="inferscale">
+          <h3>InferScale <span class="soon">Coming soon</span></h3>
+          <p class="tagline">GPU-native KV injection for personalized LLM serving</p>
+          <p>An LLM inference framework that precomputes KV caches for memory chunks and injects the retrieved ones directly on the GPU. Time-to-first-token stays nearly flat as more memory is retrieved.</p>
+          <div class="meta"><span class="chip">Python</span><span class="chip">CUDA</span><span class="chip">arXiv 2026</span></div>
+          <div class="links"><a href="https://github.com/saltsystemslab/InferScale">Code</a> <a href="https://arxiv.org/abs/2607.27090">Paper</a></div>
+        </article>
+        <article class="project" id="cascade">
+          <h3><a href="https://saltsystemslab.github.io/Cascade/">Cascade</a></h3>
+          <p class="tagline">GPU-accelerated out-of-core suffix array construction</p>
+          <p>Builds exact suffix arrays of LLM-scale corpora on a single GPU server, for corpora many times larger than GPU memory, and searches them with a batched query engine. 3.0–8.2× faster than infini-gram end to end.</p>
+          <div class="meta"><span class="chip">CUDA</span><span class="chip">C++</span><span class="chip">arXiv 2026</span></div>
+          <div class="links"><a href="https://saltsystemslab.github.io/Cascade/">Project site ↗</a> <a href="https://github.com/saltsystemslab/Cascade">Code</a> <a href="https://arxiv.org/abs/2610.15254">Paper</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

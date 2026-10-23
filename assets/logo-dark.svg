@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="SALT Systems Lab">
+  <g>  <!-- Rock-salt unit cell drawn as an isometric cube of alternating cells: crystal lattice meets slot array. -->
+  <polygon points="32,4 44,11 32,18 20,11" fill="#f6e2da"/>
+  <polygon points="20,11 32,18 20,25 8,18" fill="#e0775c"/>
+  <polygon points="44,11 56,18 44,25 32,18" fill="#e0775c"/>
+  <polygon points="32,18 44,25 32,32 20,25" fill="#f6e2da"/>
+  <polygon points="8,18 20,25 20,39 8,32" fill="#d0583b"/>
+  <polygon points="8,32 20,39 20,53 8,46" fill="#a33d26"/>
+  <polygon points="20,25 32,32 32,46 20,39" fill="#a33d26"/>
+  <polygon points="20,39 32,46 32,60 20,53" fill="#d0583b"/>
+  <polygon points="32,32 44,25 44,39 32,46" fill="#7f2e1c"/>
+  <polygon points="32,46 44,39 44,53 32,60" fill="#b5452b"/>
+  <polygon points="44,25 56,18 56,32 44,39" fill="#b5452b"/>
+  <polygon points="44,39 56,32 56,46 44,53" fill="#7f2e1c"/>
+</g>
+  <text x="74" y="37" fill="#e9e8e4" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="31" font-weight="800" letter-spacing="1.5">SALT</text>
+  <text x="75.5" y="55" fill="#e0775c" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.6">SYSTEMS LAB</text>
+</svg>

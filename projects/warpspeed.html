@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>warpSpeed · SALT Systems Lab</title>
+  <meta name="description" content="warpSpeed: Concurrent GPU hash tables. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-gpu">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#gpu">GPU Data Management</a></p>
+    <h1>warpSpeed</h1>
+    <p class="lede">Concurrent GPU hash tables</p>
+    <div class="meta"><span class="chip">CUDA</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>warpSpeed is a library of concurrent, thread-safe GPU hash tables, together with the building blocks for writing new ones. Every table has a similar API, and the repository includes a benchmark suite that compares the tables against existing state-of-the-art designs.</p><p>Tables are initialized with a fixed number of keys, support key-value pairs up to 16 bytes, and are tiled for performance.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>Eight table designs</h3><p>Chaining, cuckoo, double hashing, iceberg hashing, and power-of-two-choice hashing, several with metadata variants.</p></div><div class="feature"><h3>Uniform API</h3><p>upsert_replace, upsert_function, find_with_reference, find_pair, and remove.</p></div><div class="feature"><h3>Lock-free compound ops</h3><p>Every operation has a _no_lock variant for building compound operations inside a critical section.</p></div><div class="feature"><h3>Thorough benchmarks</h3><p>Load, scaling, aging, caching, sparse-tensor, and adversarial-race benchmarks.</p></div></div><h2>Core device API</h2><pre><code class="lang-cpp">__device__ bool upsert_replace(const tile_type&amp; tile, const Key&amp; key, const Val&amp; val);
+__device__ bool find_with_reference(tile_type tile, Key key, Val&amp; val);
+__device__ bool remove(tile_type tile, Key key);
+
+// Lock-free variants for compound operations:
+uint64_t b = get_lock_bucket(tile, key);
+stall_lock(tile, b);
+upsert_replace_no_lock(tile, key, val);
+unlock(tile, b);</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/warpSpeed">Source code →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in GPU Data Management</h3>
+        <ul class="related"><li><a href="gpu-filters.html">GPU Filters</a><span>High-performance filters for GPUs</span></li><li><a href="gallatin.html">Gallatin</a><span>General-purpose GPU memory manager</span></li><li><strong>Andes</strong><span>Coming soon</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

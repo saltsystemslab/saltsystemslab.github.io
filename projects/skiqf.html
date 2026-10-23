@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkiQF · SALT Systems Lab</title>
+  <meta name="description" content="SkiQF: Online adaptive quotient filters. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-filter">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#filters">Filters</a></p>
+    <h1>SkiQF</h1>
+    <p class="lede">Online adaptive quotient filters</p>
+    <div class="meta"><span class="chip">C</span><span class="chip">C++</span><span class="chip">SplinterDB</span><span class="chip">WiredTiger</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>Adaptive filters keep the observed false-positive rate low on skewed workloads by learning from repeated false positives. However, each adaptation adds disk I/O, which hurts throughput on workloads where false positives do not repeat.</p><p>Existing adaptive filters adapt on every detected false positive. Online adaptive filters instead decide, as queries arrive, whether adapting is worth the cost. SkiQF applies ski-rental analysis to this adapt-or-tolerate decision and is 2-competitive on total I/O.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>SkiQF</h3><p>Ski-rental-based adaptation that is 2-competitive on total I/O.</p></div><div class="feature"><h3>HybridSkiQF</h3><p>Combines SkiQF with additional heuristics.</p></div><div class="feature"><h3>Common interface</h3><p>All variants extend BaseAdaptiveFilter and share one query/adapt API.</p></div><div class="feature"><h3>Reproducible</h3><p>One script runs the paper&#x27;s full experiment suite on SplinterDB and WiredTiger.</p></div></div><h2>Run the experiments</h2><pre><code class="lang-bash">./setup.sh      # builds external dependencies (SplinterDB, WiredTiger)
+./run_tests     # results are written to ./paper/&lt;experiment-name&gt;/</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/SkiRentalAdaptiveQF">Source code →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in Filters</h3>
+        <ul class="related"><li><a href="cqf.html">Counting Quotient Filter</a><span>A general-purpose counting filter</span></li><li><a href="vqf.html">Vector Quotient Filter</a><span>Overcoming the time/space trade-off in filter design</span></li><li><a href="breadcrumb.html">Breadcrumb Filter</a><span>SIMD-accelerated filter</span></li><li><a href="https://saltsystemslab.github.io/adaptiveqf/">Adaptive Quotient Filter</a><span>A quotient filter that adapts to false positives</span></li><li><a href="aeris.html">Aeris Filter</a><span>Adaptive, expandable range filter</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallatin · SALT Systems Lab</title>
+  <meta name="description" content="Gallatin: General-purpose GPU memory manager. An open-source project from SALT Systems Lab.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo-mark.svg">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="tone-gpu">
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../"><img class="mark" src="../assets/logo-mark.svg" alt=""> SALT Systems Lab</a>
+    <nav class="main">
+      <a href="../">Home</a>
+      <a href="../projects.html" aria-current="page">Projects</a>
+      <a href="https://github.com/saltsystemslab">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero detail-hero">
+    <p class="crumbs"><a href="../projects.html">Projects</a> / <a href="../projects.html#gpu">GPU Data Management</a></p>
+    <h1>Gallatin</h1>
+    <p class="lede">General-purpose GPU memory manager</p>
+    <div class="meta"><span class="chip">CUDA</span><span class="chip">Header-only</span><span class="chip">PPoPP 2024</span></div>
+  </div>
+
+  <div class="wrap detail">
+    <article class="prose">
+      <h2>Overview</h2><p>Gallatin is a general-purpose GPU allocator. GPU threads can malloc and free device-side allocations inside kernels with no host calls and no synchronization with the host. It scales to GPUs of any size and supports allocations of any size, up to all of GPU DRAM.</p><p>GPU memory is split into segments. Segments can be formatted into smaller blocks, which are further divided into slices, or several contiguous segments can be combined into one large allocation. Van Emde Boas trees give fast successor search over segments, so Gallatin always picks the lowest-ID segment, which keeps fragmentation low and maximizes memory reuse.</p><h2>Key features</h2><div class="features"><div class="feature"><h3>In-kernel malloc/free</h3><p>Device-side allocation from any thread, with no host round-trips.</p></div><div class="feature"><h3>Any size</h3><p>Allocations range from a few bytes up to all of device memory.</p></div><div class="feature"><h3>Tunable</h3><p>Template parameters for segment, minimum, and maximum sizes. Tuning can more than double peak throughput for fixed-size workloads.</p></div><div class="feature"><h3>Header-only</h3><p>Depends only on CUDA and Cooperative Groups. Add it with CPM in one snippet.</p></div></div><h2>Add to CMake and allocate in a kernel</h2><pre><code class="lang-cpp"># CMakeLists.txt
+CPMAddPackage(NAME gallatin GITHUB_REPOSITORY saltsystemslab/gallatin GIT_TAG origin/main)
+target_link_libraries(${EXE_NAME} PRIVATE gallatin)
+
+// main.cu
+#include &lt;gallatin/allocators/global_allocator.cuh&gt;
+using namespace gallatin::allocators;
+
+__global__ void kernel() {
+  void* p = global_malloc(256);
+  /* ... */
+  global_free(p);
+}
+
+init_global_allocator(16ULL &lt;&lt; 30, /*seed=*/42);   // host
+kernel&lt;&lt;&lt;blocks, threads&gt;&gt;&gt;();
+free_global_allocator();</code></pre>
+    </article>
+    <aside class="side">
+      <div class="side-box">
+        <h3>Links</h3>
+        <ul class="side-links"><li><a href="https://github.com/saltsystemslab/gallatin">Source code →</a></li><li><a href="https://github.com/saltsystemslab/memmansurvey">GPU allocator benchmark suite →</a></li></ul>
+      </div>
+      <div class="side-box">
+        <h3>More in GPU Data Management</h3>
+        <ul class="related"><li><a href="gpu-filters.html">GPU Filters</a><span>High-performance filters for GPUs</span></li><li><a href="warpspeed.html">warpSpeed</a><span>Concurrent GPU hash tables</span></li><li><strong>Andes</strong><span>Coming soon</span></li></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© SALT Systems Lab, Northeastern University</span>
+    <span><a href="https://github.com/saltsystemslab">GitHub</a> · <a href="https://prashantpandey.github.io/">Prashant Pandey</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
