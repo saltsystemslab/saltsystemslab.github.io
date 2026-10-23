@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="SALT Systems Lab">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 64" role="img" aria-label="SALT Systems Lab">
   <g>  <!-- Rock-salt unit cell drawn as an isometric cube of alternating cells: crystal lattice meets slot array. -->
   <polygon points="32,4 44,11 32,18 20,11" fill="#f6e2da"/>
   <polygon points="20,11 32,18 20,25 8,18" fill="#e0775c"/>

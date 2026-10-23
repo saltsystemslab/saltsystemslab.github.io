@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.jpg" alt="SALT Systems Lab logo" width="480"></p>
+
 # SALT Systems Lab website
 
 A static site for https://github.com/saltsystemslab. It uses plain HTML and CSS with no build step.
@@ -30,3 +32,13 @@ When a project's repo gets its own GitHub Pages site, add it to `SITES` in `tool
 The People section in `index.html` is edited by hand.
 
 The output is plain static HTML, so GitHub Pages needs no build step.
+
+## The logo
+
+The logo is a rock-salt crystal drawn as blocks of memory. It is a cube made of eight smaller cubes (2×2×2), with light and dark cells alternating on each face:
+
+- **Salt:** table salt (NaCl) forms cubic crystals whose two kinds of atoms alternate on a grid, which the checkerboard echoes.
+- **Memory:** the cells also read as slots and blocks, the building units of the lab's filters, hash tables, and GPU memory managers.
+- **Scale:** a larger structure built from simple, repeated units.
+
+Files: `assets/logo-mark.svg` (cube only, also the favicon), `assets/logo.svg` and `assets/logo-dark.svg` (cube and wordmark for light and dark backgrounds), and `assets/logo.jpg` (1800×600, for slides and documents).
